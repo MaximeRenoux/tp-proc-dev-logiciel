@@ -8,12 +8,12 @@ window.addEventListener("load", () => {
 
     function calculIMC(){
 
-        poids = document.getElementById("champ_poids").value;
-        taille = document.getElementById("champ_taille").value;
+        const poids = document.getElementById("champ_poids").value;
+        const taille = parseFloat(document.getElementById("champ_taille").value);
 
-        imc = poids/(taille^2)
+        const imc = poids/(taille*taille)
 
-        result = document.getElementById("mainSpan");
+        const result = document.getElementById("mainSpan");
 
         result.innerHTML = imc
         console.log(imc)
