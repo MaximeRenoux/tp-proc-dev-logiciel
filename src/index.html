@@ -6,17 +6,32 @@
   <link href="index.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Calcul d'IMC :</h1>
+    <h1>Indice de masse corporelle (IMC)</h1>
   <script src="index.js"></script>
-
+  <!--jenny-->
+  <form>
+    <label for="poids">Quel est votre poids?</label>
+  <input type="number" min="15" max="300" name="poids" id="champ_poids" placeholder="kg" required autocomplete="off"> <!-- autocomplete="off" pour empêcher la saisie semi-automatique du navigateur de couvrir les validations.-->
+  <!--required pattern="^[0-9]{4,}$"-->
+</form> 
+  <br/>
+  <form>
+    <label for="taille">Quelle est votre taille? </label>
+  <input type="number" min="50" max="250" name="taille" id="champ_taille" placeholder="cm" required autocomplete="off">
+  </form> 
+  <br/>
+  <button id="boutton_calcul">Calculer mon IMC</button>
+  <br/><br/>
+  <span id="mainSpan"></span>
+  <br/><br/>
+  <!--jenny-->
+  <!--
   <input id="champ_poids" type="poids" placeholder="poids">
   <input id="champ_taille" type="taille" placeholder="texte">
-
   <select name="sexe" id="champ_sexe">
     <option value="homme">Homme</option>
     <option value="femme">Femme</option>
   </select>
-
   <select name="objectif" id="champ_obj">
     <option value="aucun">Pas d'objectif</option>
     <option value="petite_perte">Perte de poids modérée</option>
@@ -24,10 +39,8 @@
     <option value="petit_gain">Gain de poids modéré</option>
     <option value="gros_gain">Gain de poids conséquent</option>
   </select>
-
   <button id="boutton_calcul">Calculer</button>
-
   <span id="mainSpan"></span>
-
+    -->
 </body>
 </html>
