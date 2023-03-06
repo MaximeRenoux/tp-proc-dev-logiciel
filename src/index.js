@@ -23,12 +23,16 @@ window.addEventListener("load", () => {
             switch (obj){
                 case "petite_perte" : 
                     calories = meta_bas - 200
+                    break
                 case "grosse_perte" :
                     calories = meta_bas - 400
+                    break
                 case "petit_gain" : 
                     calories = meta_bas + 200
+                    break
                 case "gros_gain" :
                     calories = meta_bas + 400
+                    break
             }
             
             afficher_calories = "  Nombre de calories par jour pour atteindre votre objectif : "+calories
