@@ -1,0 +1,23 @@
+{
+  "name": "tp-proc-dev-logiciel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "lite-server -c config/bs-config.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaximeRenoux/tp-proc-dev-logiciel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaximeRenoux/tp-proc-dev-logiciel/issues"
+  },
+  "homepage": "https://github.com/MaximeRenoux/tp-proc-dev-logiciel#readme",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
