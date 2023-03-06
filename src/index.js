@@ -13,9 +13,11 @@ window.addEventListener("load", () => {
         const obj = document.getElementById("champ_obj").value;
 
         console.log("afficher métabolisme basal")
+        console.log(sexe)
 
-        if (obj =! 0){
+        if (obj != "aucun"){
             console.log("afficher nombre de calories en fonction de l'objectif")
+            console.log(obj)
         }
 
     }
