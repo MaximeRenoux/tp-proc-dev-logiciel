@@ -11,7 +11,7 @@ window.addEventListener("load", () => {
     function metabolisme_basal(){
 
         const sexe = document.getElementById("champ_sexe").value;
-        const obj = document.getElementById("champ_obj").value;
+        const obj = document.getElementById("champ_objectif").value;
 
         
 
@@ -57,7 +57,7 @@ window.addEventListener("load", () => {
     function calculMetabolismeBasal() {
         const poids = parseFloat(document.getElementById('poids_metabolisme_basal').value)
         const taille = parseFloat(document.getElementById('taille_metabolisme_basal').value)
-        const age = parseFloat(document.getElementById('age_metabolisme_basal').value)
+        const age = parseFloat(document.getElementById('champ_age').value)
         const sexe = document.getElementById('sexe_metabolisme_basal').value
         const valeurDeBase = (poids**0.48) * (taille**0.50) * (age**-0.13)
         const metabolismeBasal = (sexe == 'homme' ? 1.083 : 0.963) * (poids**0.48) * (taille**0.50) * (age**-0.13)
@@ -65,7 +65,24 @@ window.addEventListener("load", () => {
         const metabolismeBasalEnKcal = (sexe == 'homme' ? 259 : 230) * valeurDeBase
         document.getElementById('affichage_metabolisme_basal').innerHTML = Math.round(metabolismeBasalEnJoules) + 'MJ'
     }
-
+	const CHAMPS = ['poids', 'taille', 'sexe', 'objectif', 'age']
+	function remplirChampsAvecValeursUrl() {
+		console.log('remplissage automatique des champs')
+		const chaineRequete = window.location.search
+		const parametresUrl = new URLSearchParams(chaineRequete)
+		const champs = Array.from(parametresUrl.entries())
+		champs.forEach(champ => {
+			const [cle, valeur] = champ
+			if (CHAMPS.includes(cle))
+			try {
+				const aRemplir = document.getElementById(`champ_${cle}`)
+				aRemplir.value = valeur
+			} catch(e) {
+				console.warn(`le paramètre "${cle}" n’a pas de champ correspondant`)
+			}
+		})
+	}
+	remplirChampsAvecValeursUrl()
 })
 
 
