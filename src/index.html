@@ -7,16 +7,18 @@
 </head>
 <body>
 
-    <h1>Que voulez-vous calculer aujourd'hui?</h1>
-  <script src="index.js"></script>
-
+<h1>Que voulez-vous calculer aujourd'hui?</h1>
+<script src="index.js"></script>
+<div>
+  <label>Activité:</label>
   <input type="checkbox" id="check_imc" name="IMC">
+  <label for="check_imc">Indice Masse Corporelle (IMC)</label>
   <input type="checkbox" id="check_mbasal" name="MetabolismeBasal">
-
+  <label for="check_mbasal">Métabolisme basal (MB)</label>
   <div>
-    <label for="fpoids">Poids (kg)</label>
+    <label for="champ_poids">Poids (kg)</label>
     <input type="number" name="fpoids" id="champ_poids" required min="15" max="300" size="15" placeholder="70" required autocomplete="off" style="width: 10em"> <!-- autocomplete="off" pour empêcher la saisie semi-automatique du navigateur de couvrir les validations.-->
-    <div id="errpoids" class="emsg"></div> 
+    <div id="errpoids" class="emsg"></div>
   </div>
   <div>
     <label>Taille (cm)</label>
@@ -24,17 +26,17 @@
     <div id="errtaille" class="emsg"></div>
   </div>
   <div>
-    <label for="fage">Âge (ans)</label>
+    <label for="champ_age">Âge (ans)</label>
     <input type="number" name="fage" id="champ_age" required min="1" max="150"  placeholder="45" required autocomplete="off" style="width: 10em">
     <div id="errage" class="emsg"></div>
   </div>
 
-
+  <label for="champ_sexe">Sexe :</label>
   <select name="sexe" id="champ_sexe" disabled>
     <option value="H">Homme</option>
     <option value="F">Femme</option>
   </select>
-
+  <label for="champ_objectif">Objectif :</label>
   <select name="objectif" id="champ_objectif" disabled>
     <option value="0">Pas d'objectif</option>
     <option value="1">Perte de poids modérée</option>
@@ -47,6 +49,6 @@
   <button id="boutton_calcul">Calculer</button>
 
   <span id="mainSpan"></span>
-
+</div>
 </body>
 </html>
