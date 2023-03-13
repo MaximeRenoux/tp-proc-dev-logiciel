@@ -6,8 +6,8 @@ window.addEventListener("load", () => {
     // document.getElementById("champ_poids").addEventListener("change", calculIMC); 
     // document.getElementById("champ_taille").addEventListener("change", calculIMC);
     document.getElementById("boutton_calcul").addEventListener("click", calculIMC);
-    document.getElementById('bouton_calcul_metabolisme_basal').addEventListener('click', calculMetabolismeBasal)
-
+    document.getElementById("check_mbasal").addEventListener("click", montrerChamps);
+    
     function metabolisme_basal(){
 
         const sexe = document.getElementById("champ_sexe").value;
@@ -40,6 +40,17 @@ window.addEventListener("load", () => {
             
         }
 
+    }
+
+    function montrerChamps(){
+        if (document.getElementById("check_mbasal").checked == true){
+            document.getElementById("champ_age").disabled = false;
+            document.getElementById("champ_sexe").disabled = false;
+
+        } else {
+            document.getElementById("champ_age").disabled = true;
+            document.getElementById("champ_sexe").disabled = true;
+        }
     }
 
     function calculIMC(){
