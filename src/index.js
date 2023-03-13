@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
         console.log(sexe)
 
         if (obj != "aucun"){
-            meta_bas = parseFloat( document.getElementById('affichage_metabolisme_basal').innerHTML.substring(0,  document.getElementById('affichage_metabolisme_basal').innerHTML.length -2 ))*238
+            meta_bas = 2000
 
             switch (obj){
                 case "petite_perte" : 
