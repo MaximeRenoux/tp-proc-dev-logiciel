@@ -19,17 +19,21 @@ window.addEventListener("load", () => {
         console.log(sexe)
 
         if (obj != "aucun"){
-            meta_bas = 2000
+            meta_bas = parseFloat( document.getElementById('affichage_metabolisme_basal').innerHTML.substring(0,  document.getElementById('affichage_metabolisme_basal').innerHTML.length -2 ))*238
 
             switch (obj){
                 case "petite_perte" : 
                     calories = meta_bas - 200
+                    break
                 case "grosse_perte" :
                     calories = meta_bas - 400
+                    break
                 case "petit_gain" : 
                     calories = meta_bas + 200
+                    break
                 case "gros_gain" :
                     calories = meta_bas + 400
+                    break
             }
             
             afficher_calories = "  Nombre de calories par jour pour atteindre votre objectif : "+calories
