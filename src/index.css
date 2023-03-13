@@ -1,4 +1,8 @@
 h1{color:black;}
+.champ{
+    margin-bottom: 25px;
+}
+
 .err { background: #ffe6ee; border: 1px solid #b1395f; }
 .emsg { color: #c12020; font-weight: bold; }
 /* Chrome, Safari, Edge, Opera */
@@ -11,4 +15,11 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+body{
+
+}
+.main-container{
+
+padding: 0 20% 0 20%;
 }
