@@ -6,11 +6,16 @@
   <link href="index.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Calcul d'IMC :</h1>
+
+    <h1>Que voulez-vous calculer aujourd'hui?</h1>
   <script src="index.js"></script>
 
-  <input id="champ_poids" type="poids" placeholder="poids">
-  <input id="champ_taille" type="taille" placeholder="texte">
+  <input type="checkbox" id="check_imc" name="IMC">
+  <input type="checkbox" id="check_mbasal" name="MetabolismeBasal">
+
+  <input id="champ_poids" type="poids" placeholder="70">
+  <input id="champ_taille" type="taille" placeholder="175">
+  <input id="champ_age" type="age" placeholder="45">
 
   <select name="sexe" id="champ_sexe">
     <option value="H">Homme</option>
@@ -23,23 +28,12 @@
     <option value="2">Perte de poids conséquente</option>
     <option value="3">Gain de poids modéré</option>
     <option value="4">Gain de poids conséquent</option>
+
   </select>
 
   <button id="boutton_calcul">Calculer</button>
 
   <span id="mainSpan"></span>
-
-  <section id="metabolisme_basal">
-    <input name="poids_metabolisme_basal" id="poids_metabolisme_basal" type="number" min="15" max="300" placeholder="poids"/>
-    <input name="taille_metabolisme_basal" id="taille_metabolisme_basal" type="number" min="50" max="250" placeholder="taille"/>
-    <input name="age_metabolisme_basal" id="champ_age" type="number" min="3" max="150" placeholder="age"/>
-    <select name="sexe_metabolisme_basal" id="sexe_metabolisme_basal">
-      <option value="homme">Homme</option>
-      <option value="femme">Femme</option>
-    </select>
-    <button id="bouton_calcul_metabolisme_basal">Calculer le métabolisme</button>
-    <span id="affichage_metabolisme_basal"></span>
-  </section>
 
 </body>
 </html>
