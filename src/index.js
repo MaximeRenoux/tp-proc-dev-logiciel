@@ -27,7 +27,7 @@ window.addEventListener("load", () => {
         console.log(sexe)
 
         if (obj != "aucun"){
-            meta_bas = 2000
+            meta_bas = calculMetabolismeBasal()*239
 
             switch (obj){
                 case "0":
@@ -46,7 +46,7 @@ window.addEventListener("load", () => {
                     break
             }
             
-            afficher_calories = "<span>  Nombre de calories par jour pour atteindre votre objectif : "+calories+"</span>"
+            afficher_calories = "<span>  Nombre de calories par jour pour atteindre votre objectif : "+calories+"KCal</span>"
             
         }
 
