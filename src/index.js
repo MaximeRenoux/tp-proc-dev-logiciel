@@ -6,7 +6,8 @@ window.addEventListener("load", () => {
     // document.getElementById("champ_poids").addEventListener("change", calculIMC); 
     // document.getElementById("champ_taille").addEventListener("change", calculIMC);
     document.getElementById("boutton_calcul").addEventListener("click", calculIMC);
-    document.getElementById('bouton_calcul_metabolisme_basal').addEventListener('click', calculMetabolismeBasal)
+    document.getElementById('boutton_calcul').addEventListener('click', calculMetabolismeBasal)
+    window.addEventListener("click", check);
 
     function metabolisme_basal(){
 
@@ -86,6 +87,48 @@ window.addEventListener("load", () => {
 			}
 		})
 	}
+    function check () {
+        // (C1) INIT
+        var valid = true, error = "", field = "";
+      
+        // (C2) POIDS
+        field = document.getElementById("champ_poids");
+        error = document.getElementById("errpoids");
+        if (field.value != "" && !field.checkValidity()) {
+          valid = false;
+          field.classList.add("err");
+          error.innerHTML = "Veuillez renseigner un poids entre 15 et 300 kg\r\n";
+        } else {
+          field.classList.remove("err");
+          error.innerHTML = "";
+        }
+      
+        // (C3) TAILLE
+        field = document.getElementById("champ_taille");
+        error = document.getElementById("errtaille");
+        if (field.value != "" && !field.checkValidity()) {
+          valid = false;
+          field.classList.add("err");
+          error.innerHTML = "Veuillez renseigner une taille entre  50 et 250 cm\r\n";
+        } else {
+          field.classList.remove("err");
+          error.innerHTML = "";
+        }
+      
+        // (C3) AGE
+        field = document.getElementById("champ_age");
+        error = document.getElementById("errage");
+        if (field.value != "" && !field.checkValidity()) {
+          valid = false;
+          field.classList.add("err");
+          error.innerHTML = "Veuillez renseigner un âge entre 1 et 150 ans\r\n";
+        } else {
+          field.classList.remove("err");
+          error.innerHTML = "";
+        }
+        // (C4) RESULT
+        return valid;
+      }
 	remplirChampsAvecValeursUrl()
 })
 
