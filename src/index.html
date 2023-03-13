@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Calculateur d'IMC</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
+  <meta charset="utf-8">
+  <title>Appli de calcul d'IMC</title>
+  <link href="index.css" rel="stylesheet" />
 </head>
 <body>
-<h1>Calculateur d'IMC</h1>
-<label for="poidsInput">Poids (en kg) :</label>
-<input type="number" id="poidsInput"><br><br>
-<label for="tailleInput">Taille (en cm) :</label>
-<input type="number" id="tailleInput"><br><br>
-<button onclick="calculerIMC()">Calculer</button><br><br>
-<p>Votre IMC est  : <span id="resultat"></span></p>
-<script src="index.js"></script>
+
+    <h1>Que voulez-vous calculer aujourd'hui?</h1>
+  <script src="index.js"></script>
+
+  <input type="checkbox" id="check_imc" name="IMC">
+  <input type="checkbox" id="check_mbasal" name="MetabolismeBasal">
+
+  <input id="champ_poids" type="poids" placeholder="70">
+  <input id="champ_taille" type="taille" placeholder="175">
+  <input id="champ_age" type="age" placeholder="45">
+
+  <select name="sexe" id="champ_sexe">
+    <option value="H">Homme</option>
+    <option value="F">Femme</option>
+  </select>
+
+  <select name="objectif" id="champ_objectif">
+    <option value="0">Pas d'objectif</option>
+    <option value="1">Perte de poids modérée</option>
+    <option value="2">Perte de poids conséquente</option>
+    <option value="3">Gain de poids modéré</option>
+    <option value="4">Gain de poids conséquent</option>
+
+  </select>
+
+  <button id="boutton_calcul">Calculer</button>
+
+  <span id="mainSpan"></span>
+
 </body>
 </html>
