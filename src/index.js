@@ -6,6 +6,8 @@ window.addEventListener("load", () => {
 
     document.getElementById("boutton_calcul").addEventListener("click", calculIMC);
     document.getElementById('boutton_calcul').addEventListener('click', calculMetabolismeBasal)
+    document.getElementById('boutton_calcul').addEventListener('click', sauvegarderHistorique)
+
     window.addEventListener("click", check);
 
     document.getElementById("champ_age").disabled = true;
@@ -15,38 +17,94 @@ window.addEventListener("load", () => {
 
     document.getElementById("boutton_calcul").addEventListener("click", afficherResultat);
     document.getElementById("check_mbasal").addEventListener("click", montrerChamps);
+
+    document.getElementById("champ_poids").addEventListener("keydown", griserSiChampVide);
+    document.getElementById("champ_taille").addEventListener("keydown", griserSiChampVide);
     
-    function metabolisme_basal(){
+    let poids, taille, sexe, age, obj
 
-        const sexe = document.getElementById("champ_sexe").value;
-        const obj = document.getElementById("champ_objectif").value;
+    function refreshValues(){
+        poids = document.getElementById("champ_poids").value;
+        taille = parseFloat(document.getElementById("champ_taille").value)/100;
+        sexe = document.getElementById("champ_sexe").value;
+        age = document.getElementById("champ_age").value;
+        obj = document.getElementById("champ_objectif").value;
+        mettreAJourAffichage()
+    }
 
+    function griserSiChampVide(e){
+        const keyCode = e.key;
+        refreshValues()
+        if(keyCode == "Backspace" ){
+            if (e.target.value.length==1) 
+                griserBoutton()
+        }
+        else degriserBoutton()
+    }
+    
+
+    function griserBoutton(){
+        document.getElementById("boutton_calcul").disabled = true;
+    }
+
+    function degriserBoutton(){
+        document.getElementById("boutton_calcul").disabled = false;
+    }
+
+    function verifierGriser(){
+        console.log(document.getElementById("champ_poids").value)
+        if(document.getElementById("champ_poids").value == "" || document.getElementById("champ_taille").value == ""){
+            console.log("hello")
+            griserBoutton()
+        }
+        else{
+            document.getElementById("boutton_calcul").disabled = false;
+        }
+    }
         
+    function sauvegarderHistorique(){
+        refreshValues()
+        const imc = calculIMC()
+        const meta_basal_mj = calculMetabolismeBasal()
+        const meta_basal_kcal = meta_basal_mj*239
+        const date = new Date().toISOString()//.split('T')[0]
+        const objectif = calculObj(meta_basal_mj, obj)
+        const entree = {imc, meta_basal_kcal, objectif} 
+        localStorage.setItem(date, JSON.stringify(entree))
+        mettreAJourAffichage()
+    }    
 
-        console.log("afficher métabolisme basal")
-        console.log(sexe)
+    function calculObj(meta_basal, objectif){
+
+        let calories = 400
+
+        switch (objectif){
+            case "0":
+                calories += meta_bas
+                break
+            case "1" : 
+                calories += meta_bas - 200 
+                break
+            case "2" :
+                calories += meta_bas - 400 
+                break
+            case "3" : 
+                calories += meta_bas + 200
+                break
+            case "4" :
+                calories += meta_bas + 400
+                break
+        }
+        return calories
+    }
+
+
+    function metabolisme_basal(){
 
         if (obj != "aucun"){
             meta_bas = calculMetabolismeBasal()*239
-
-            switch (obj){
-                case "0":
-                    calories = 0
-                case "1" : 
-                    calories = meta_bas - 200
-                    break
-                case "2" :
-                    calories = meta_bas - 400
-                    break
-                case "3" : 
-                    calories = meta_bas + 200
-                    break
-                case "4" :
-                    calories = meta_bas + 400
-                    break
-            }
             
-            afficher_calories = "<span>  Nombre de calories par jour pour atteindre votre objectif : "+calories+"KCal</span>"
+            afficher_calories = "<span>  Nombre de calories par jour pour atteindre votre objectif : "+calculObj(meta_bas, obj)+"KCal</span>"
             
         }
 
@@ -66,21 +124,16 @@ window.addEventListener("load", () => {
     }
 
     function calculIMC(){
-
-        const poids = document.getElementById("champ_poids").value;
-        const taille = parseFloat(document.getElementById("champ_taille").value)/100;
-
+        refreshValues()
         metabolisme_basal()
 
         const imc = poids/(taille*taille)
 
-        return imc
+        return imc.toFixed(2)
     
     }
 
     function afficherResultat(){
-        const poids = document.getElementById("champ_poids").value;
-        const taille = parseFloat(document.getElementById("champ_taille").value)/100;
         const result = document.getElementById("mainSpan");
         let html = ""
         let afffichage_imc = ''
@@ -108,19 +161,16 @@ window.addEventListener("load", () => {
     }
 
     function calculMetabolismeBasal() {
-        const poids = parseFloat(document.getElementById('champ_poids').value)
-        const taille = parseFloat(document.getElementById('champ_taille').value)
-        const age = parseFloat(document.getElementById('champ_age').value)
-        const sexe = document.getElementById('champ_sexe').value
+        refreshValues()
         const valeurDeBase = (poids**0.48) * (taille**0.50) * (age**-0.13)
         const metabolismeBasal = (sexe == 'homme' ? 1.083 : 0.963) * (poids**0.48) * (taille**0.50) * (age**-0.13)
         const metabolismeBasalEnJoules = (sexe == 'homme' ? 1.083 : 0.963) * valeurDeBase
         const metabolismeBasalEnKcal = (sexe == 'homme' ? 259 : 230) * valeurDeBase
         return Math.round(metabolismeBasalEnJoules)
     }
+
 	const CHAMPS = ['poids', 'taille', 'sexe', 'objectif', 'age']
 	function remplirChampsAvecValeursUrl() {
-		console.log('remplissage automatique des champs')
 		const chaineRequete = window.location.search
 		const parametresUrl = new URLSearchParams(chaineRequete)
 		const champs = Array.from(parametresUrl.entries())
@@ -134,6 +184,11 @@ window.addEventListener("load", () => {
 				console.warn(`le paramètre "${cle}" n’a pas de champ correspondant`)
 			}
 		})
+        if (champs.length > 0){
+            calculMetabolismeBasal()
+            afficherResultat()
+            sauvegarderHistorique()
+        }
 	}
     function check () {
         // (C1) INIT
@@ -177,7 +232,38 @@ window.addEventListener("load", () => {
         // (C4) RESULT
         return valid;
       }
+
+    function mettreAJourAffichage(){
+        const affichage = document.getElementById("affichage")
+        affichage.innerHTML = ""
+        const nbLignes = Object.keys(localStorage).length
+
+        Object.entries(localStorage).forEach(([date, stringValeurs], i)=>{
+            
+            const valeurs = JSON.parse(stringValeurs)
+            const {imc, meta_basal_kcal, objectif} = valeurs
+            const ligne = affichage.insertRow();
+            [date, imc, meta_basal_kcal, objectif].reverse().forEach(val=>{
+                const cell = ligne.insertCell(0)
+                cell.className = "table_row padding5"
+                const elem = document.createElement("span")
+                elem.innerHTML = val
+                cell.appendChild(elem)
+
+            })
+            
+
+        })
+        
+
+        const ligne = affichage.rows
+
+
+    }
+    refreshValues()
 	remplirChampsAvecValeursUrl()
+    verifierGriser()
+
 })
 
 
