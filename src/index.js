@@ -137,13 +137,13 @@ window.addEventListener("load", () => {
 	}
     function check () {
         // (C1) INIT
-        var valid = true, error = "", field = "";
+        var valid_champ = true, error = "", field = "";
       
         // (C2) POIDS
         field = document.getElementById("champ_poids");
         error = document.getElementById("errpoids");
         if (field.value != "" && !field.checkValidity()) {
-          valid = false;
+          valid_champ = false;
           field.classList.add("err");
           error.innerHTML = "Veuillez renseigner un poids entre 15 et 300 kg\r\n";
         } else {
@@ -155,7 +155,7 @@ window.addEventListener("load", () => {
         field = document.getElementById("champ_taille");
         error = document.getElementById("errtaille");
         if (field.value != "" && !field.checkValidity()) {
-          valid = false;
+          valid_champ = false;
           field.classList.add("err");
           error.innerHTML = "Veuillez renseigner une taille entre  50 et 250 cm\r\n";
         } else {
@@ -167,7 +167,7 @@ window.addEventListener("load", () => {
         field = document.getElementById("champ_age");
         error = document.getElementById("errage");
         if (field.value != "" && !field.checkValidity()) {
-          valid = false;
+          valid_champ = false;
           field.classList.add("err");
           error.innerHTML = "Veuillez renseigner un âge entre 1 et 150 ans\r\n";
         } else {
@@ -175,7 +175,7 @@ window.addEventListener("load", () => {
           error.innerHTML = "";
         }
         // (C4) RESULT
-        return valid;
+        return valid_champ;
       }
 	remplirChampsAvecValeursUrl()
 })
