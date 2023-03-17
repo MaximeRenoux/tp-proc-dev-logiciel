@@ -17,10 +17,11 @@ window.addEventListener("load", () => {
 
     document.getElementById("boutton_calcul").addEventListener("click", afficherResultat);
     document.getElementById("check_mbasal").addEventListener("click", montrerChamps);
+
+    document.getElementById("champ_poids").addEventListener("keydown", griserSiChampVide);
+    document.getElementById("champ_taille").addEventListener("keydown", griserSiChampVide);
     
     let poids, taille, sexe, age, obj
-
-    console.log(localStorage)
 
     function refreshValues(){
         poids = document.getElementById("champ_poids").value;
@@ -28,8 +29,37 @@ window.addEventListener("load", () => {
         sexe = document.getElementById("champ_sexe").value;
         age = document.getElementById("champ_age").value;
         obj = document.getElementById("champ_objectif").value;
-
         mettreAJourAffichage()
+    }
+
+    function griserSiChampVide(e){
+        const keyCode = e.key;
+        refreshValues()
+        if(keyCode == "Backspace" ){
+            if (e.target.value.length==1) 
+                griserBoutton()
+        }
+        else degriserBoutton()
+    }
+    
+
+    function griserBoutton(){
+        document.getElementById("boutton_calcul").disabled = true;
+    }
+
+    function degriserBoutton(){
+        document.getElementById("boutton_calcul").disabled = false;
+    }
+
+    function verifierGriser(){
+        console.log(document.getElementById("champ_poids").value)
+        if(document.getElementById("champ_poids").value == "" || document.getElementById("champ_taille").value == ""){
+            console.log("hello")
+            griserBoutton()
+        }
+        else{
+            document.getElementById("boutton_calcul").disabled = false;
+        }
     }
         
     function sauvegarderHistorique(){
@@ -205,7 +235,6 @@ window.addEventListener("load", () => {
 
     function mettreAJourAffichage(){
         const affichage = document.getElementById("affichage")
-        console.log(affichage)
         affichage.innerHTML = ""
         const nbLignes = Object.keys(localStorage).length
 
@@ -233,6 +262,7 @@ window.addEventListener("load", () => {
     }
     refreshValues()
 	remplirChampsAvecValeursUrl()
+    verifierGriser()
 
 })
 
