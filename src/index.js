@@ -2,7 +2,7 @@
 window.addEventListener("load", () => {
 
     document.getElementById("check_imc").checked = true
-    document.getElementById("check_mbasal").checked = false
+    document.getElementById("champ_mbasal").checked = false
 
     document.getElementById("boutton_calcul").addEventListener("click", calculIMC);
     document.getElementById('boutton_calcul').addEventListener('click', calculMetabolismeBasal)
@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
 
 
     document.getElementById("boutton_calcul").addEventListener("click", afficherResultat);
-    document.getElementById("check_mbasal").addEventListener("click", montrerChamps);
+    document.getElementById("champ_mbasal").addEventListener("click", montrerChamps);
 
     document.getElementById("champ_poids").addEventListener("keydown", griserSiChampVide);
     document.getElementById("champ_taille").addEventListener("keydown", griserSiChampVide);
@@ -111,7 +111,7 @@ window.addEventListener("load", () => {
     }
 
     function montrerChamps(){
-        if (document.getElementById("check_mbasal").checked == true){
+        if (document.getElementById("champ_mbasal").checked == true){
             document.getElementById("champ_age").disabled = false;
             document.getElementById("champ_sexe").disabled = false;
             document.getElementById("champ_objectif").disabled = false;
@@ -145,7 +145,7 @@ window.addEventListener("load", () => {
             afffichage_imc = afffichage_imc.concat("<span>", "IMC : ", imc.toString(), "</span>")
         }
 
-        if (document.getElementById("check_mbasal").checked == true){
+        if (document.getElementById("champ_mbasal").checked == true){
             meta_basal = calculMetabolismeBasal()
             metal_basal_kcal = meta_basal*239
             affichage_meta_basal = affichage_meta_basal.concat("<span>", "Métabolisme Basal : ", metal_basal_kcal, "KCal ou ", meta_basal, "MJ", "</span>")
@@ -169,7 +169,7 @@ window.addEventListener("load", () => {
         return Math.round(metabolismeBasalEnJoules)
     }
 
-	const CHAMPS = ['poids', 'taille', 'sexe', 'objectif', 'age']
+	const CHAMPS = ['mbasal', 'poids', 'taille', 'sexe', 'objectif', 'age']
 	function remplirChampsAvecValeursUrl() {
 		const chaineRequete = window.location.search
 		const parametresUrl = new URLSearchParams(chaineRequete)
@@ -192,7 +192,7 @@ window.addEventListener("load", () => {
 						if (valeurFloat >= parseFloat(min) && valeurFloat <= parseFloat(max)) 
 							aRemplir.value = valeur
 						else
-							console.warn(`la valeur de "${cle}" donnée dans l’URL (${valeur}) n’est pas compris entre ${min} et ${max}`)
+							console.warn(`la valeur de "${cle}" donnée dans l’URL (${valeur}) n’est pas comprise entre ${min} et ${max}`)
 						break
 					case 'select-one':
 						try {
@@ -202,6 +202,11 @@ window.addEventListener("load", () => {
 						else
 							console.warn(`la valeur de "${cle}" donnée dans l’URL (${valeur}) ne fait pas partie des options disponibles : ${options.reduce((a, b) => `${a}, ${b}`)}`)
 						} catch(e){console.log(e)}
+						break
+					case 'checkbox':
+						const inclus = ['true', 'false'].includes(valeur)
+						if (inclus) aRemplir.checked = JSON.parse(valeur)
+						else console.warn(`la valeur de "${cle}" donnée dans l’URL (${valeur}) n’est pas 'true' ou 'false'`)
 						break
 				}
 			} catch(e) {
