@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+* {
+	font-family: 'Roboto Thin', sans-serif;
+	font-weight: 100;
+}
+
 h1{color:black;}
 .champ{
+	width: fit-content;
     margin-bottom: 25px;
+    margin-right: 25px;
 }
 
 .err { background: #ffe6ee; border: 1px solid #b1395f; }
@@ -30,6 +39,7 @@ input:invalid {
 
 input:valid {
   border: 1px solid black;
+  }
 
 #mainSpan{
   display:block;
@@ -46,4 +56,34 @@ input:valid {
 
 .padding5{
   padding:5px;
+}
+
+/* Formulaire */
+.ligne {
+	display: flex;
+}
+
+.champ-formulaire {
+	padding: 8px;
+	border-radius: 4px;
+}
+
+.champ-desactivable {
+	border: 1px solid;
+}
+
+.bouton-submit {
+	padding: 12px 54px;
+	border-radius: 8px;
+	background-color: #9bb1e8;
+	border: none;
+}
+
+.bouton-submit:hover {
+	cursor: pointer;
+}
+
+.etiquette-formulaire {
+	display: block;
+	margin-bottom: 8px;
 }

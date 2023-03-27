@@ -18,31 +18,35 @@
   <input type="checkbox" id="check_mbasal" name="MetabolismeBasal">
   <label for="check_mbasal">Métabolisme basal (MB)</label>
  </div>
+ <div class="ligne">
   <div class="champ">
-    <label for="champ_poids">Poids (kg)</label>
-    <input type="number" name="fpoids" id="champ_poids" required min="15" max="300" size="15" placeholder="70" required autocomplete="off" style="width: 10em" required> <!-- autocomplete="off" pour empêcher la saisie semi-automatique du navigateur de couvrir les validations.-->
+    <label for="champ_poids" class="etiquette-formulaire">Poids (kg)</label>
+    <input type="number" name="fpoids" class="champ-formulaire" id="champ_poids" required min="15" max="300" size="15" placeholder="70" required autocomplete="off" style="width: 10em" required> <!-- autocomplete="off" pour empêcher la saisie semi-automatique du navigateur de couvrir les validations.-->
     <div id="errpoids" class="emsg"></div>
   </div>
   <div class="champ">
-    <label>Taille (cm)</label>
-    <input type="number" name="ftaille" id="champ_taille"  required min="50" max="250" placeholder="175" required autocomplete="off" style="width: 10em" required>
+    <label class="etiquette-formulaire">Taille (cm)</label>
+    <input type="number" name="ftaille" class="champ-formulaire" id="champ_taille"  required min="50" max="250" placeholder="175" required autocomplete="off" style="width: 10em" required>
     <div id="errtaille" class="emsg"></div>
   </div>
+ </div>
+ <div class="ligne">
   <div class="champ">
-    <label for="champ_age">Âge (ans)</label>
-    <input type="number" name="fage" id="champ_age" required min="1" max="150"  placeholder="45" required autocomplete="off" style="width: 10em" required>
+    <label for="champ_age" class="etiquette-formulaire">Âge (ans)</label>
+    <input type="number" name="fage" id="champ_age" class="champ-formulaire champ-desactivable" required min="1" max="150"  placeholder="45" required autocomplete="off" style="width: 10em" required>
     <div id="errage" class="emsg"></div>
   </div>
   <div class="champ">
-  <label for="champ_sexe">Sexe :</label>
-  <select name="sexe" id="champ_sexe" disabled>
+  <label for="champ_sexe" class="etiquette-formulaire">Sexe :</label>
+  <select name="sexe" id="champ_sexe" class="champ-formulaire champ-desactivable" disabled>
     <option value="H">Homme</option>
     <option value="F">Femme</option>
   </select>
 </div>
+ </div>
   <div class="champ">
-  <label for="champ_objectif">Objectif :</label>
-  <select name="objectif" id="champ_objectif" disabled>
+  <label for="champ_objectif" class="etiquette-formulaire">Objectif :</label>
+  <select name="objectif" id="champ_objectif" class="champ-formulaire champ-desactivable" disabled>
     <option value="0">Pas d'objectif</option>
     <option value="1">Perte de poids modérée</option>
     <option value="2">Perte de poids conséquente</option>
@@ -51,7 +55,7 @@
 
   </select>
   </div>
-  <button id="boutton_calcul">Calculer</button>
+  <button id="boutton_calcul" class="bouton-submit">Calculer</button>
 
   <span id="mainSpan"></span>
 
