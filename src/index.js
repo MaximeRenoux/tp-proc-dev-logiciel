@@ -179,7 +179,31 @@ window.addEventListener("load", () => {
 			if (CHAMPS.includes(cle))
 			try {
 				const aRemplir = document.getElementById(`champ_${cle}`)
-				aRemplir.value = valeur
+				switch (aRemplir.type) {
+					case 'number':
+						try {
+							const valeurFloat = parseFloat(valeur)
+							if (!valeurFloat) throw new Error(`la valeur fournie (${valeur}) pour la clé "${cle}" n’est pas un nombre`)
+						} catch (e) {
+							console.warn(e)
+						}
+						const { min, max } = aRemplir
+						const valeurFloat = parseFloat(valeur)
+						if (valeurFloat >= parseFloat(min) && valeurFloat <= parseFloat(max)) 
+							aRemplir.value = valeur
+						else
+							console.warn(`la valeur de "${cle}" donnée dans l’URL (${valeur}) n’est pas compris entre ${min} et ${max}`)
+						break
+					case 'select-one':
+						try {
+							const options= [...aRemplir.options].map(option => option.value)
+						if (options.includes(valeur))
+							aRemplir.value = valeur
+						else
+							console.warn(`la valeur de "${cle}" donnée dans l’URL (${valeur}) ne fait pas partie des options disponibles : ${options.reduce((a, b) => `${a}, ${b}`)}`)
+						} catch(e){console.log(e)}
+						break
+				}
 			} catch(e) {
 				console.warn(`le paramètre "${cle}" n’a pas de champ correspondant`)
 			}
