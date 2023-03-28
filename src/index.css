@@ -16,9 +16,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-body{
 
-}
 .main-container{
 
 padding: 0 20% 0 20%;
@@ -30,6 +28,7 @@ input:invalid {
 
 input:valid {
   border: 1px solid black;
+}
 
 #mainSpan{
   display:block;
@@ -46,4 +45,56 @@ input:valid {
 
 .padding5{
   padding:5px;
+}
+
+/******** Tableau *********/
+
+*{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+/* Table Styles */
+
+.table-wrapper{
+  margin: 10px 70px 70px;
+  box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.fl-table {
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: white;
+}
+
+.fl-table td, .fl-table th {
+  text-align: center;
+  padding: 8px;
+}
+
+.fl-table td {
+  border-right: 1px solid #f8f8f8;
+  font-size: 1rem;
+}
+
+.fl-table thead th {
+  color: #ffffff;
+  background: #EA5346;
+}
+
+
+.fl-table thead th:nth-child(odd) {
+  color: #ffffff;
+  background: #F6A400;
+}
+
+.fl-table tr:nth-child(even) {
+  background: #F8F8F8;
 }
