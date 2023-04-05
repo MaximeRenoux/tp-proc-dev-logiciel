@@ -5,8 +5,8 @@ window.addEventListener("load", () => {
     document.getElementById("champ_mbasal").checked = false
 
     document.getElementById("boutton_calcul").addEventListener("click", calculIMC);
-    document.getElementById('boutton_calcul').addEventListener('click', calculMetabolismeBasal)
-    document.getElementById('boutton_calcul').addEventListener('click', sauvegarderHistorique)
+    document.getElementById("boutton_calcul").addEventListener("click", calculMetabolismeBasal);
+    document.getElementById("boutton_calcul").addEventListener("click", sauvegarderHistorique);
 
     window.addEventListener("click", check);
 
@@ -145,7 +145,9 @@ window.addEventListener("load", () => {
         if (afficherIMC){
             imc = calculIMC()
             afffichage_imc = afffichage_imc.concat("<span>", "IMC : ", imc.toString(), "</span>")
-
+            //jenny--------------------------------
+             slider.value = parseInt(100*(imc-14)/(40-14));    
+             //jenny--------------------------------
         	if (afficherMBasal){
             		meta_basal = calculMetabolismeBasal()
             		metal_basal_kcal = meta_basal*239
@@ -304,7 +306,9 @@ window.addEventListener("load", () => {
         // (C4) RESULT
         return valid_champ;
       }
-
+      //jenny-----------------------------------------------------  
+    const slider = document.getElementById("slider");
+      //jenny-----------------------------------------------------
     function mettreAJourAffichage(){
         const affichage = document.getElementById("affichage")
         affichage.innerHTML = ""
