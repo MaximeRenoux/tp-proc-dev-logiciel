@@ -10,7 +10,13 @@
 
 <script src="index.js"></script>
 <div class="main-container">
-  <h1>Que voulez-vous calculer aujourd'hui?</h1>
+  <!--jenny-->
+  <header>
+    <img src="imc_header.png" alt="Mon IMC" width="180" height="110" > 
+    <h1> <strong>Que voulez-vous calculer aujourd'hui?</strong></h1>
+  </header>
+</br>
+  <!--jenny-->
  <div class="champ">
   <label>Activité:</label>
   <input type="checkbox" id="check_imc" name="IMC">
@@ -55,27 +61,34 @@
 
   </select>
   </div>
+ 
   <button id="boutton_calcul" class="bouton-submit">Calculer</button>
 
   <span id="mainSpan"></span>
 
-  <table>
-    <thead>
-      <tr>
-        <th class="padding5">Date:</th>
-        <th class="padding5">Imc:</th>
-        <th class="padding5">Métabolisme Basal:</th>
-        <th class="padding5">Objectif journalier:</th>
-      </tr>
-    </thead>
-    <tbody id="affichage">
-    
-    </tbody>
-  </table>
+  <!--jenny-->
+  <input id="slider" type="range" min="0" max="100" value="0">
+  <br/><br/><br/>
+  <!--jenny-->
   
-
-  
-
+  <!--jenny-->
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th class="padding5">Date</th>
+          <th class="padding5">Indice Masse Corporelle (IMC)</th>
+          <th class="padding5">Métabolisme Basal (MB)</th>
+          <th class="padding5">Objectif journalier</th>
+        </tr>
+      </thead>
+      <tbody id="affichage">
+      
+      </tbody>
+    </table>
+  </div>
+  <!--jenny-->
+ 
 </div>
 </body>
 </html>
